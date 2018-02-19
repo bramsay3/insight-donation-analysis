@@ -28,7 +28,7 @@ class donation(object):
         fields = donationLine.split("|")
         self.CMTE_ID = fields[0]
         self.name = fields[7]
-        self.zip = int(fields[10][:5])
+        self.zip = fields[10][:5]
 
         self.day = int(fields[13][:2])
         self.month = int(fields[13][2:4])
@@ -77,7 +77,7 @@ class donerTracker(object):
             repeatIDX = self.oldestIDX
             self.oldestDate = self.donationDate[-1]
             self.oldestIDX = len(self.donations)-1
-            return self.donations(repeatIDX)
+            return self.donations[repeatIDX]
         else:
             return self.donations[-1]
 
@@ -109,14 +109,14 @@ class recipiantTracker(object):
 
     def toString(self, percentile):
         perAmt = int(np.floor(len(self.contributions) * percentile / 100))
-        roundPer = np.round(self.contributions[perAmt])
-
+        roundPer = int(np.round(self.contributions[perAmt]))
+        roundTot = int(np.round(self.totalContributions))
 
         printString = str(self.recipiant) + '|' + \
                       str(self.zip) + '|' + \
                       str(self.year) + '|' + \
                       str(roundPer) + '|' + \
-                      str(self.totalContributions) + '|' + \
+                      str(roundTot) + '|' + \
                       str(self.transactions)
 
         return printString

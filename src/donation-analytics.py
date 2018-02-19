@@ -25,7 +25,7 @@ recipiantData = {}
 #A shared dictionary for collecting information about who gives donations
 donateBin = {}
 
-outFile = open(sys.argv[3],'a')
+outFile = open(sys.argv[3],'a+')
 
 dFile = open(sys.argv[1], 'r')
 for line in dFile:
