@@ -1,5 +1,6 @@
 
 import numpy as np
+import bisect
 
 
 #Error checks if a value already exits and possible occurences of collisions
@@ -97,7 +98,7 @@ class recipiantTracker(object):
         self.transactions = 1
 
     def addDonation(self, gift):
-        self.contributions.append(gift.amt)
+        bisect.bisect(self.contributions,gift.amt)
         self.totalContributions += gift.amt
         self.transactions += 1
 
